@@ -37,10 +37,13 @@ class SessionRestoreTests: KIFTestCase {
         //   about:home, page1, *page2*, page3
         // where page2 is active.
         EarlGrey.selectElement(with: grey_accessibilityID("url"))
+            .inRoot(grey_kindOfClass(UITextField.self))
             .perform(grey_tap())
         EarlGrey.selectElement(with: grey_accessibilityID("address"))
+            .inRoot(grey_kindOfClass(UITextField.self))
             .perform(grey_replaceText(restoreURL!.absoluteString))
         EarlGrey.selectElement(with: grey_accessibilityID("address"))
+            .inRoot(grey_kindOfClass(UITextField.self))
             .perform(grey_typeText("\n"))
         tester().waitForWebViewElementWithAccessibilityLabel("Page 2")
         EarlGrey.selectElement(with: grey_accessibilityLabel("Back"))

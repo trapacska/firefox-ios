@@ -78,15 +78,28 @@ class AuthenticationTests: KIFTestCase {
 
     fileprivate func loadAuthPage() {
         tester().wait(forTimeInterval: 3)
-        EarlGrey.selectElement(with: grey_accessibilityID("url")).perform(grey_tap())
-        EarlGrey.selectElement(with: grey_accessibilityID("address")).perform(grey_replaceText("\(webRoot!)/auth.html"))
-        EarlGrey.selectElement(with: grey_accessibilityID("address")).perform(grey_typeText("\n"))
+        EarlGrey.selectElement(with: grey_accessibilityID("url"))
+            .inRoot(grey_kindOfClass(UITextField.self))
+            .perform(grey_tap())
+        EarlGrey.selectElement(with: grey_accessibilityID("address"))
+            .inRoot(grey_kindOfClass(UITextField.self))
+            .perform(grey_replaceText("\(webRoot!)/auth.html"))
+        EarlGrey.selectElement(with: grey_accessibilityID("address"))
+            .inRoot(grey_kindOfClass(UITextField.self))
+            .perform(grey_typeText("\n"))
     }
 
     fileprivate func logOut() {
-        EarlGrey.selectElement(with: grey_accessibilityID("url")).perform(grey_tap())
-        EarlGrey.selectElement(with: grey_accessibilityID("address")).perform(grey_replaceText("\(webRoot!)/auth.html?logout=1"))
-        EarlGrey.selectElement(with: grey_accessibilityID("address")).perform(grey_typeText("\n"))
+        EarlGrey.selectElement(with: grey_accessibilityID("url"))
+            .inRoot(grey_kindOfClass(UITextField.self))
+            .perform(grey_tap())
+        EarlGrey.selectElement(with: grey_accessibilityID("address"))
+            .inRoot(grey_kindOfClass(UITextField.self))
+            .perform(grey_replaceText("\(webRoot!)/auth.html?logout=1"))
+        EarlGrey.selectElement(with: grey_accessibilityID("address"))
+            .inRoot(grey_kindOfClass(UITextField.self))
+            .perform(grey_typeText("\n"))
+
         // Wait until the dialog shows up
 		let dialogAppeared = GREYCondition(name: "Wait the login dialog to appear", block: {
 			var errorOrNil: NSError?

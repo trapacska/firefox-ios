@@ -25,12 +25,6 @@ class LoginInputTests: KIFTestCase {
         super.tearDown()
     }
 
-    func enterUrl(url: String) {
-        EarlGrey.selectElement(with: grey_accessibilityID("url")).perform(grey_tap())
-        EarlGrey.selectElement(with: grey_accessibilityID("address")).perform(grey_replaceText(url))
-        EarlGrey.selectElement(with: grey_accessibilityID("address")).perform(grey_typeText("\n"))
-    }
-
     func waitForLoginDialog(text: String, appears: Bool = true) {
         var success = false
         var failedReason = "Failed to display dialog"
@@ -60,7 +54,7 @@ class LoginInputTests: KIFTestCase {
         let url = "\(webRoot!)/loginForm.html"
         let username = "test@user.com"
 
-        enterUrl(url: url)
+        BrowserUtils.enterUrlAddressBar(typeUrl: url)
         tester().enterText(username, intoWebViewInputWithName: "username")
         tester().enterText("password", intoWebViewInputWithName: "password")
         tester().tapWebViewElementWithAccessibilityLabel("submit_btn")
@@ -75,7 +69,7 @@ class LoginInputTests: KIFTestCase {
         let password1 = "password1"
         let password2 = "password2"
 
-        enterUrl(url: url)
+        BrowserUtils.enterUrlAddressBar(typeUrl: url)
         tester().enterText(username, intoWebViewInputWithName: "username")
         tester().enterText(password1, intoWebViewInputWithName: "password")
         tester().tapWebViewElementWithAccessibilityLabel("submit_btn")
@@ -95,7 +89,7 @@ class LoginInputTests: KIFTestCase {
         let url = "\(webRoot!)/loginForm.html"
         let username = "test@user.com"
 
-        enterUrl(url: url)
+        BrowserUtils.enterUrlAddressBar(typeUrl: url)
         tester().enterText(username, intoWebViewInputWithName: "username")
         tester().enterText("", intoWebViewInputWithName: "password")
         tester().tapWebViewElementWithAccessibilityLabel("submit_btn")
@@ -109,7 +103,7 @@ class LoginInputTests: KIFTestCase {
         let password1 = "password1"
         let password2 = ""
 
-        enterUrl(url: url)
+        BrowserUtils.enterUrlAddressBar(typeUrl: url)
         tester().enterText(username, intoWebViewInputWithName: "username")
         tester().enterText(password1, intoWebViewInputWithName: "password")
         tester().tapWebViewElementWithAccessibilityLabel("submit_btn")

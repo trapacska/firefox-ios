@@ -59,8 +59,8 @@ class LoginManagerTests: KIFTestCase {
     }
 
     fileprivate func closeLoginManager() {
-        EarlGrey.selectElement(with:grey_allOf([grey_accessibilityLabel("Settings"), grey_kindOfClass(NSClassFromString("UIButtonLabel")!)])).perform(grey_tap())
-
+        tester().tapView(withAccessibilityLabel: "Settings")
+        
         let DoneAppeared = GREYCondition(name: "Wait for the Done button", block: { () -> Bool in
             var errorOrNil: NSError?
             EarlGrey.selectElement(with: grey_accessibilityID("AppSettingsTableViewController.navigationItem.leftBarButtonItem"))
@@ -607,7 +607,7 @@ class LoginManagerTests: KIFTestCase {
         let usernameField = usernameCell.descriptionLabel
         XCTAssertEqual(usernameField, firstResponder)
         tester().clearTextFromAndThenEnterText(intoCurrentFirstResponder: "changedusername")
-        tester().tapView(withAccessibilityLabel: "Next")
+        tester().tapView(withAccessibilityLabel: "siguiente")
         firstResponder = UIApplication.shared.keyWindow?.firstResponder()
         var passwordCell = list.cellForRow(at: IndexPath(row: 2, section: 0)) as! LoginTableViewCell
         let passwordField = passwordCell.descriptionLabel
@@ -703,7 +703,7 @@ class LoginManagerTests: KIFTestCase {
         var passwordCell = list.cellForRow(at: IndexPath(row: 2, section: 0)) as! LoginTableViewCell
         var passwordField = passwordCell.descriptionLabel
 
-        tester().tapView(withAccessibilityLabel: "Next")
+        tester().tapView(withAccessibilityLabel: "siguiente")
         tester().waitForAnimationsToFinish()
         tester().clearTextFromView(withAccessibilityIdentifier: "passwordField")
         tester().tapView(withAccessibilityLabel: "Done")
